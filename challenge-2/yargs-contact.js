@@ -94,6 +94,7 @@ yargs.command({
 
         // Menampilkan daftar data kontak
         console.log('List Data Kontak: ');
+        
         // Menggunakan metode forEach untuk iterasi melalui setiap elemen dalam array existingData.
         existingData.forEach((contact, index) => {
             console.log(`Nama ${index+1}: ${contact.nama}, Telepon ${index+1}: ${contact.telepon}`);
