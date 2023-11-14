@@ -17,7 +17,8 @@ if (!fs.existsSync(dataPath)) {
 }
 
 
-// Read file json dari folder data
+// readFile(): fungsi yang digunakan untuk membaca data dari file. 
+// Fungsi ini mengembalikan data yang telah di-parse dari format JSON.
 const readFile = () => {
     try {
         // Membaca file secara synchronous dan mengembalikan hasil parsing JSON
@@ -83,20 +84,26 @@ yargs.command({
 
 // Menampilkan list nama dan nomor telepon
 yargs.command({
+    // Mendefinisikan sebuah perintah melalui command. 
     command: 'list',
     describe: 'Melihat nama dan nomor telepon',
+    // handler(): Ini adalah fungsi yang akan dijalankan ketika perintah 'list' dipanggil. 
     handler() {
+        // Membaca data dari file
         const existingData = readFile();
 
+        // Menampilkan daftar data kontak
         console.log('List Data Kontak: ');
+        // Menggunakan metode forEach untuk iterasi melalui setiap elemen dalam array existingData.
         existingData.forEach((contact, index) => {
             console.log(`Nama ${index+1}: ${contact.nama}, Telepon ${index+1}: ${contact.telepon}`);
         });
     },
 });
 
-// Menampilkan detail
+// Menampilkan detail kontak (searching) berdasarkan nama
 yargs.command({
+    // Mendefinisikan sebuah perintah melalui command. 
     command: 'detail',
     describe: 'Menampilkan data / filtering berdasarkan nama',
     builder: {
@@ -107,16 +114,21 @@ yargs.command({
         },
     },
     handler(argv) {
+        // Membaca data dari file
         const existingData = readFile();
-        console.log(argv);
+
+        // Mencari kontak berdasarkan nama (dikonversi menjadi huruf kecil untuk memastikan kesamaan)
         const contact = existingData.find((c) => c.nama.toLowerCase() === argv.nama.toLowerCase());
 
+        // Check apabila kontak ditemukan
         if (contact) {
+            // Jika ditemukan, cetak detail kontak
             console.log('Nama: ', contact.nama);
             console.log('Nomor Telepon: ', contact.telepon);
             console.log('Alamat email: ', contact.email);
             console.log('Email: ', contact.alamat);
         } else {
+            // Jika tidak ditemukan, mencetak pesan bahwa data tidak ditemukan
             console.log('Data dengan nama ', argv.nama, ' tidak ditemukan');
         }
     }
