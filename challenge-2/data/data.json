@@ -1,1 +1,14 @@
-[{"name":"Michelle","phone":"082334112525","email":"michelleflorence86@gmail.com","address":"Bandung"},{"name":"Pusing","phone":"082334112525","email":"pusing@gmail.com","address":"Pusing"}]
+[
+    {
+        "name": "Michelle",
+        "phone": "082334112525",
+        "email": "michelleflorence86@gmail.com",
+        "address": "Bandung"
+    },
+    {
+        "name": "Pusing",
+        "phone": "082334112525",
+        "email": "pusing@gmail.com",
+        "address": "Pusing"
+    }
+]
