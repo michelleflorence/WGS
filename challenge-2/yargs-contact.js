@@ -1,5 +1,6 @@
 const yargs = require('yargs');
 const fs = require('fs');
+const { log } = require('console');
 
 // Deklarasi folder
 const dirPath = './data';
@@ -53,7 +54,7 @@ yargs.command({
             type: 'string',
         },
         email: {
-            describe: 'Alamat email',
+            describe: 'Email',
             type: 'string',
         },
         alamat: {
@@ -127,13 +128,126 @@ yargs.command({
             // Jika ditemukan, cetak detail kontak
             console.log('Nama: ', contact.nama);
             console.log('Nomor Telepon: ', contact.telepon);
-            console.log('Alamat email: ', contact.email);
-            console.log('Email: ', contact.alamat);
+            console.log('Email: ', contact.email);
+            console.log('Alamat: ', contact.alamat);
         } else {
             // Jika tidak ditemukan, mencetak pesan bahwa data tidak ditemukan
             console.log('Data dengan nama ', argv.nama, ' tidak ditemukan');
         }
     }
 });
+
+// Memperbaharui data kontak
+yargs.command({
+    // Mendefinisikan sebuah perintah melalui command
+    command: 'update',
+    describe: 'Memperbaharui / Update Data Kontak',
+    builder: {
+        nama: {
+            describe: 'Nama Lengkap',
+            demandOption: true,
+            type: 'string',
+        },
+        namaBaru: {
+            describe: 'Nama Baru',
+            type: 'string',
+        },
+        telepon: {
+            describe: 'Nomor Telepon Baru',
+            type: 'string',
+        },
+        email: {
+            describe: 'Email Baru',
+            type: 'string',
+        },
+        alamat: {
+            describe: 'Alamat Baru',
+            type: 'string',
+        },
+    },
+    handler(argv) {
+        // Membaca data dari file
+        const existingData = readFile();
+        let isExist = false
+
+        for(let k = 0; k < existingData.length; k++){
+            if(existingData[k]['nama'] === argv.nama){
+                isExist = true
+                if(argv.namaBaru !== undefined){
+                    existingData[k]['namaBaru'] = argv.namaBaru
+                }
+                if (argv.telepon !== undefined){
+                    existingData[k]['telepon'] = argv.telepon
+                }
+                if (argv.email !== undefined){
+                    existingData[k]['email'] = argv.email
+                }
+                if (argv.alamat !== undefined){
+                    existingData[k]['alamat'] = argv.alamat
+                }
+            }
+        }
+
+        if(isExist){
+            console.log('Success update data');
+            writeFile(existingData);
+        }else{
+            console.log('Data not found');
+        }
+
+        // // 
+        // const contactIndex = existingData.findIndex((c) => c.nama.toLowerCase() === argv.nama.toLowerCase());
+
+        // // 
+        // if (contactIndex) {
+        //     existingData[contactIndex] = {
+        //         nama: argv.nama,
+        //         telepon: argv.telepon,
+        //         email: argv.email || '',
+        //         alamat: argv.alamat || '',
+        //     };
+
+        //     writeFile(existingData);
+
+        //     console.log('Data berhasil diupdate menjadi: ', existingData[contactIndex]);
+        // } else {
+        //     console.log('Data dengan nama ', argv.nama, ' tidak ditemukan!');
+        // }
+
+
+    },
+});
+
+// Delete data
+yargs.command({
+    command: 'delete',
+    describe: 'Menghapus data',
+    builder: {
+        nama: {
+            describe: 'Nama Lengkap',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        const existingData = readFile();
+        let isExist = false;
+
+        for (let k = 0; k < existingData.length; k++){
+            if(existingData[k]['nama'] === argv.nama){
+                isExist = true;
+                existingData.splice(k, 1);
+                break;
+            }
+        }
+
+        if (isExist) {
+            console.log('Sucess delete data');
+            writeFile(existingData);
+        } else {
+            console.log('Data not found');
+        }
+    }
+})
 
 yargs.parse();
