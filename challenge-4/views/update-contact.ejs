@@ -1,0 +1,30 @@
+<div class="form-container">
+    <% if (typeof errors != 'undefined' && errors.length > 0) { %>
+        <% errors.forEach(error => { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error.msg %>
+            </div>
+        <% }) %>
+    <% } %>
+    <form method="post" action="/update-contact">
+        <input type="hidden" name="old_name" value="<%= contact ? contact.old_name : '' %>">
+        <h2 style="text-align: center;">Update Contact</h2>
+        <div class="form-group">
+            <label class="label" for="nama">Nama: </label>
+            <input class="input-field" type="text" id="nama" name="nama" value="<%= contact ? contact.nama : '' %>" required>
+        </div>
+        <div class="form-group">
+            <label class="label" for="nomor-telepon">Nomor Telepon: </label>
+            <input class="input-field" type="tel" id="telepon" name="telepon" value="<%= contact ? contact.telepon : '' %>" required>
+        </div>
+        <div class="form-group">
+            <label class="label" for="email">Email: </label>
+            <input class="input-field" type="email" id="email" value="<%= contact ? contact.email : '' %>" name="email">
+        </div>
+        
+        <button class="back-button">
+            <a href="/contact">Go Back</a>
+        </button>
+        <button class="update-button">Update</button>
+    </form>
+</div>

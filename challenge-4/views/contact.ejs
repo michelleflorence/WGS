@@ -1,0 +1,45 @@
+
+<div style="padding: 20px;">
+  <h2>Welcome to the Contact Page</h2>
+  
+  <button class="add-contact-button">
+    <a href="/add-contact" class="add-contact-button">Add Contact</a>
+  </button>
+
+  <table>
+    <thead>
+      <tr>
+            <th>No. </th>
+            <th>Nama</th>
+            <th>Nomor Telepon</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+    <tbody>
+      <% let index = 0 %>
+      <% data.forEach((contact, index) => { %>
+        <tr>
+          <!-- Menggunakan ejs foreach untuk iterasi data -->
+          <td><%= index+1 %></td>
+          <td><%= contact.nama %></td>
+          <td><%= contact.telepon %></td>
+          <td>
+            <button class="detail-button">
+              <a href="/detail-contact/<%= contact.nama %>" class="detail-button">Detail</a>
+            </button>
+            <button class="update-button">
+              <a href="/update-contact?nama=<%= contact.nama %>" class="update-button">Update</a>
+            </button>
+            <button class="delete-button">
+              <a href="/delete-contact?nama=<%= contact.nama %>" class="delete-button">Delete</a>
+            </button>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
+<!-- <%- include('layouts/header') %> -->
+<!-- <%- include('layouts/navbar') %> -->
+<!-- <%- include('layouts/footer') %> -->
