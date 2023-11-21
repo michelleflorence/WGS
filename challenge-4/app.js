@@ -118,17 +118,17 @@ app.post('/add-contact',
 
     // Periksa apakah terdapat kesalahan validasi atau nama kontak sudah terdaftar sebelumnya
     if (!error.isEmpty() || !existingData.every(contact => contact.nama !== nama)) {
-        // Jika nama sudah terdaftar, tambahkan pesan kesalahan
+        // Jika nama sudah terdaftar, tambahkan error message
         if(!existingData.every(contact => contact.nama !== nama)){
             errors.push({'msg':'Name are already registered'})
         }
         
-        // Jika terdapat kesalahan validasi lainnya, tambahkan pesan kesalahan
+        // Jika terdapat kesalahan validasi lainnya, tambahkan error message
         if(!error.isEmpty()){
             errors.push(...error.array())
         }
 
-        // Render kembali formulir 'add-contact' dengan pesan kesalahan dan data kontak yang dimasukkan
+        // Render kembali formulir 'add-contact' dengan error message dan data kontak yang dimasukkan
         res.render('add-contact', {errors: errors, title: 'Add Contact', contact: contact});
     } else {     
         // Jika tidak ada kesalahan, tambahkan kontak baru ke dalam data yang sudah ada
