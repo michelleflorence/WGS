@@ -1,0 +1,27 @@
+<div class="card">
+    <h2 style="text-align: center;">Contact Information</h2>
+    
+    <div class="info">
+        <div class="label">Nama:</div>
+        <%= contact.nama %>
+    </div>
+    <div class="info">
+        <div class="label">Nomor Telepon:</div>
+        <%= contact.telepon %>
+    </div>
+    <div class="info">
+        <div class="label">Email:</div>
+        <%= contact.email %>
+    </div>
+    <div class="info">
+        <div class="label">Alamat:</div>
+        <%= contact.alamat %>
+    </div>
+
+    <button class="back-button">
+        <a href="/contact">Go Back</a>
+    </button>
+    <button class="delete-button">
+        <a href="/delete-contact/<%= contact.id %>" class="delete-button">Delete</a>
+    </button>
+</div>

@@ -1,0 +1,31 @@
+<div class="form-container">
+    <% if (typeof errors != 'undefined' && errors.length > 0) { %>
+        <% errors.forEach(error => { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error.msg %>
+            </div>
+        <% }) %>
+    <% } %>
+    <form method="POST" action="/add-contact">
+        <h2 style="text-align: center;">Add Contact</h2>
+        <div class="form-group">
+            <label class="label" for="nama">Nama: </label>
+            <input class="input-field" type="text" id="nama" name="nama" required value="<%= contact ? contact.nama : '' %>">
+        </div>
+        <div class="form-group">
+            <label class="label" for="nomor-telepon">Nomor Telepon: </label>
+            <input class="input-field" type="tel" id="telepon" name="telepon" required value="<%= contact ? contact.telepon : '' %>">
+        </div>
+        <div class="form-group">
+            <label class="label" for="email">Email: </label>
+            <input class="input-field" type="email" id="email" name="email" required value="<%= contact ? contact.email : '' %>">
+        </div>
+        <div class="form-group">
+            <label class="label" for="address">Alamat: </label>
+            <input class="input-field" type="alamat" id="alamat" name="alamat" required value="<%= contact ? contact.alamat : '' %>">
+        </div>
+        
+        <button class="add-contact-button" type="submit">Add Contact</button>
+    </form>
+    
+</div>
