@@ -67,13 +67,19 @@ const getAllContact = async () => {
 // Fungsi untuk mengambil data kontak berdasarkan ID dari database.
 const getContact = async (id) => {
     try {
+        // Teks query SQL untuk SELECT data dari tabel contacts berdasarkan ID.
         const queryText = 'SELECT * FROM contacts WHERE id = $1'
 
+        // Eksekusi query menggunakan fungsi query dari pool, dengan memberikan nilai ID sebagai parameter.
         const result = await query(queryText, [id])
 
+        // Mengembalikan hasil query berupa rows yang berisi data kontak yang sesuai dengan ID.
         return result.rows[0]
     } catch (e) {
+        // Menangani kesalahan dengan mencetak pesan error ke konsol.
         console.log(e);
+
+        // Menangani kesalahan dengan mencetak pesan error ke konsol.
         return null
     }
 }
@@ -81,15 +87,22 @@ const getContact = async (id) => {
 // Fungsi untuk memperbarui data kontak dalam database.
 const updateContact = async (contact) => {
     try {
+        // Teks query SQL untuk UPDATE data kontak dalam tabel contacts berdasarkan ID.
         const queryText = 'UPDATE contacts SET nama = $1, telepon = $2, email = $3, alamat = $4 WHERE id = $5'
 
+        // Array nilai (value) yang akan diikuti saat mengeksekusi query, sesuai dengan urutan placeholder dalam queryText.
         const value = [contact.nama, contact.telepon, contact.email, contact.alamat, contact.id]
 
+        // Eksekusi query menggunakan fungsi query dari pool, dengan memberikan array nilai sebagai parameter.
         const result = await query(queryText, value)
 
+        // Mengembalikan hasil query berupa rows yang berisi data kontak yang telah diperbarui.
         return result.rows
     } catch (e) {
+        // Menangani kesalahan dengan mencetak pesan error ke konsol.
         console.log(e);
+
+        // Mengembalikan nilai null jika terjadi kesalahan.
         return null
     }
 }
@@ -97,13 +110,19 @@ const updateContact = async (contact) => {
 // Fungsi untuk menghapus data kontak dari database berdasarkan ID.
 const deleteContact = async (id) => {
     try {
+        // Teks query SQL untuk DELETE data kontak dalam tabel contacts berdasarkan ID.
         const queryText = 'DELETE FROM contacts WHERE id = $1'
 
+        // Eksekusi query menggunakan fungsi query dari pool, dengan memberikan ID sebagai parameter.
         const result = await query(queryText, [id])
 
+        // Mengembalikan hasil query berupa rows yang berisi data kontak yang telah dihapus.
         return result.rows
     } catch (e) {
+        // Menangani kesalahan dengan mencetak pesan error ke konsol.
         console.log(e);
+
+        // Mengembalikan nilai null jika terjadi kesalahan.
         return null
     }
 }
