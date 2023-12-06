@@ -1,3 +1,14 @@
+<!--
+  Kode berikut merupakan formulir untuk memperbarui kontak pada halaman web.
+  - Pada bagian ini, dilakukan pengecekan apakah terdapat kesalahan (errors) yang perlu ditampilkan.
+  - Jika terdapat kesalahan, maka setiap pesan kesalahan akan ditampilkan dalam elemen alert-danger.
+  - Formulir menggunakan metode "post" dan diarahkan ke "/update-contact" saat di-submit.
+  - Terdapat input hidden untuk menyimpan nilai id kontak yang akan diperbarui.
+  - Setiap elemen formulir memiliki label dan input field yang sesuai, dengan nilai default diambil dari data kontak jika ada.
+  - Tombol "Go Back" memungkinkan pengguna untuk kembali ke halaman kontak.
+  - Tombol "Update" digunakan untuk mengirim formulir pembaruan.
+-->
+
 <div class="form-container">
     <% if (typeof errors != 'undefined' && errors.length > 0) { %>
         <% errors.forEach(error => { %>

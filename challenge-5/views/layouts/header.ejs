@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--
+    Metadata untuk pengaturan halaman, termasuk tautan font eksternal (Inter),
+    viewport untuk responsifitas, dan judul halaman yang dinamis dari variabel "title".
+  -->
   <meta charset="UTF-8">
   <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%=title  %></title>
+
+  <!--
+    Gaya dasar untuk elemen-elemen HTML dalam halaman, seperti body, navigasi (nav),
+    dan footer. Font-family disetel ke 'Inter' untuk memperoleh tata letak yang rapi.
+  -->
   <style>
     body {
       /* font-family: Arial, sans-serif; */
@@ -41,18 +50,19 @@
       padding: 3px;
       position: fixed;
       bottom: 0;
-      width: 100%; /* Change to 100% for responsiveness */
+      width: 100%; /* Ganti menjadi 100% untuk responsifitas */
     }
     
     img {
       border-radius: 20%;
       width: 100px;
     }
-    /* Media query for small screens (e.g., mobile devices) */
+
+    /* Media query untuk layar kecil (mis., perangkat mobile) */
     @media only screen and (max-width: 600px) {
         footer {
-            position: relative; /* Change position to relative for smaller screens */
-            width: 100%; /* Make the width 100% for smaller screens */
+            position: relative; /* Ganti posisi menjadi relatif untuk layar lebih kecil */
+            width: 100%; /* Atur lebar menjadi 100% untuk layar lebih kecil */
         }
     }
 
